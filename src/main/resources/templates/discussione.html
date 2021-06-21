@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+  
+  <div th:replace="fragments/base.html :: Top"> </div>
+  
+    <div class="centerobj" id="bodycont">
+         
+      <div id="titoloPagina"> 
+      <h2 id="titoloneDiscussione" th:text="${discussione.nome}">Visualizza profilo:</h2> 
+      	 <a id="goBack" th:href="@{'/argomento/'+ ${discussione.argomento.id} + '/1'}" 
+      		th:text="#{tornaArgomento} + ${discussione.argomento.nome}"></a>
+      </div>
+      
+      <div id="paginatore">
+        <span id="pagineMenu">
+        <span class="pagButton">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/1'}" th:text="#{primaPagina}"></a>
+        </span>
+        <span class="pagButton" th:if="${pagina.hasBefore}">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/' + ${pagina.pageNumber -1}}" th:text="${pagina.pageNumber -1}"></a>
+        </span>
+        <span id="paginaAttuale" th:text="${pagina.pageNumber}">p1</span>
+        <span class="pagButton" th:if="${pagina.hasAfter}">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/' + ${pagina.pageNumber +1}}" th:text="${pagina.pageNumber +1}"></a>
+        </span>
+        <span class="pagButton">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/999999'}" th:text="#{ultimaPagina}"></a>
+        </span>
+        </span>
+        <span id="rispondiButton" th:if="${utenteCorrente!=null && !utenteCorrente.isBanned}"> 
+          <a th:href="@{'/discussione/' + ${discussione.id} + '/nuovaRisposta'}" th:text="#{nuovaRisposta}"></a> 
+        </span>
+      </div>
+      
+      <div id="palco">
+      
+      	<div id="avvolgiSingoloOggetto" th:if="${pagina.elementi.size()==0}" th:text="#{emptyRisposte}">	
+			</div>
+      
+      		<div class="msgBox" th:each="msg : ${pagina.elementi}">
+        <div class="msgUser"> 
+          <div>
+            <a th:href="@{'/user/' + ${msg.creatore.id}}" th:text="${msg.creatore.nickName}"></a>
+          </div>
+          <div>
+             <img class="userMsgIcon" th:src="@{${msg.creatore.imageUrl}}">
+          </div>
+          <div th:text="${msg.timePost.toString()}">
+            scritto il:
+          </div>
+        </div>
+        <div class="msgCont"> 
+          <div class="quoteCont" th:if="${msg.quotedMessage != null}">
+            <div th:text="#{introduciCitazione} + ${msg.quotedMessage.creatore.nickName}">
+            	
+            </div>
+            <div class="quoteText" th:text="${msg.quotedMessage.testo}">
+            	
+            </div>
+          </div> 
+          <div class="msgBody" th:text="${msg.testo}">
+            ciao come va? 
+          </div>
+          <div id="msgBtnCnt">
+            <a class="msgDelete"th:href="@{'/discussione/' + ${discussione.id} +'/eliminaMessaggio/' +${msg.id}}" th:text="#{eliminaMessaggio}" th:if="${utenteCorrente != null && (utenteCorrente.id == msg.creatore.id || utenteCorrente.isAdmin)}"></a>
+            <a class="msgQuote" th:href="@{'/discussione/' + ${discussione.id} + '/rispondiCitando/'+${msg.id}}" th:text="#{rispondiCitando}" th:if="${utenteCorrente != null && !utenteCorrente.isBanned}"></a>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+      
+       <div id="paginatore">
+        <span id="pagineMenu">
+        <span class="pagButton">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/1'}" th:text="#{primaPagina}"></a>
+        </span>
+        <span class="pagButton" th:if="${pagina.hasBefore}">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/' + ${pagina.pageNumber -1}}" th:text="${pagina.pageNumber -1}"></a>
+        </span>
+        <span id="paginaAttuale" th:text="${pagina.pageNumber}">p1</span>
+        <span class="pagButton" th:if="${pagina.hasAfter}">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/' + ${pagina.pageNumber +1}}" th:text="${pagina.pageNumber +1}"></a>
+        </span>
+        <span class="pagButton">
+        	<a th:href="@{'/discussione/' + ${discussione.id} + '/999999'}" th:text="#{ultimaPagina}"></a>
+        </span>
+        </span>
+        <span id="rispondiButton" th:if="${utenteCorrente!=null && !utenteCorrente.isBanned}"> 
+          <a th:href="@{'/discussione/' + ${discussione.id} + '/nuovaRisposta'}" th:text="#{nuovaRisposta}"></a> 
+        </span>
+      </div>
+      
+  </div>
+  
+	<div th:replace="fragments/base.html :: Footer"> </div>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{chiediArgTitolo}" >Con quale nickname vuoi essere conosciuto?</h2> 
+
+	
+		<div id="avvolgiSingoloOggetto">
+		<form th:action="@{/admin/addArgomento}" method="POST">
+	            <div th:text="#{chiediNomearg}"></div>
+	            <input type="text" maxlength="50" placeholder="nomeArg" required
+	                       th:field="${argomento.nome}"/>
+	            <div th:if="${#fields.hasErrors('argomento.nome')}"
+	                th:errors="${argomento.nome}" th:style="'color:red'"></div>
+	
+	           <button type="submit" th:text="#{invia}">Invia</button>
+		</form>
+		</div>
+	
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

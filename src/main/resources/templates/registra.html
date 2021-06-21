@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+
+		
+	<div th:replace="fragments/base.html :: Top"> </div>
+	<div class="centerobj" id="bodycont">
+      <h2 id="titoloPagina" th:text="#{chiediRegistrazione}">Registrati</h2> 
+		<div id="avvolgiSingoloOggetto">
+
+			<form th:action="@{/register }" method="POST">
+		
+					<div>
+					<div class="elemPadTop" th:text="#{spiegaUsername}">
+					</div>
+					<div>
+						<span>Username:</span>
+						<span>
+						<input name="username" type="text" maxlength="20" required  th:field="${credentials.username}" />
+						</span>
+					</div>		
+					<div th:if="${#fields.hasErrors('credentials.username')}"
+		                th:errors="${credentials.username}" th:style="'color:red'"></div>
+					
+					<div class="elemPadTop" th:text="#{spiegaPassword}">
+					</div>
+					<div>
+						<span>Password:</span>
+						<span>
+						<input name="password" type="password" required maxlength="20"  th:field="${credentials.password}" />
+						</span>
+					</div>
+					<div th:if="${#fields.hasErrors('credentials.password')}"
+		                th:errors="${credentials.password}" th:style="'color:red'"></div>
+		            
+		            <div class="elemPadTop" th:text="#{spiegaNickname}">
+					</div>
+					<div>
+						<span>Nickname:</span>
+						<span><input name="nickname" type="text" required maxlength="20"  th:field="${user.nickName}" /></span>
+					</div>
+					   <div th:if="${#fields.hasErrors('user.nickName')}"
+		                th:errors="${user.nickName}" th:style="'color:red'"></div>
+					
+					<div class="elemPadTop">
+						<span><button type="submit" th:text="#{registrati}">registrati</button></span>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

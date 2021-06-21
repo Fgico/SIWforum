@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+
+		
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina">Login</h2> 
+
+	
+		<div id="avvolgiSingoloOggetto">
+
+			<form th:action="@{/login}" method="POST">
+				<div>
+					<div>
+						<span>Username:</span>
+						<span><input name="username" type="text" maxlength="20" required /></span>
+					</div>		
+					<div>
+						<span>Password:</span>
+						<span><input name="password" type="password" required maxlength="20" /></span>
+					</div>
+					<div class="elemPadTop">
+						<span><button type="submit">Login</button></span>
+					</div>
+				</div>
+			</form>
+			<div class="elemPadTop">
+				<a th:text="#{offriOauth}" href="/oauth2/authorization/github" > github</a>
+			</div>
+			<div class="elemPadTop">
+				<a th:text="#{offriRegistrazione}" href="/register" > altrimenti registrati</a>
+			</div>
+		
+		</div>
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+	
+</body>
+</html>

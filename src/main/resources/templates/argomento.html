@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+  
+  <div th:replace="fragments/base.html :: Top"> </div>
+  
+    <div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="${argomento.nome}">Visualizza profilo:</h2> 
+      
+      <div id="paginatore">
+        <span id="pagineMenu">
+        <span class="pagButton">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/1'}" th:text="#{primaPagina}"></a>
+        </span>
+        <span class="pagButton" th:if="${pagina.hasBefore}">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/' + ${pagina.pageNumber -1}}" th:text="${pagina.pageNumber -1}"></a>
+        </span>
+        <span id="paginaAttuale" th:text="${pagina.pageNumber}">p1</span>
+        <span class="pagButton" th:if="${pagina.hasAfter}">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/' + ${pagina.pageNumber +1}}" th:text="${pagina.pageNumber +1}"></a>
+        </span>
+        <span class="pagButton">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/999999'}" th:text="#{ultimaPagina}"></a>
+        </span>
+        </span>
+        <span id="rispondiButton" th:if="${utenteCorrente!=null && !utenteCorrente.isBanned}"> 
+          <a th:href="@{'/argomento/' + ${argomento.id} + '/nuovaDiscussione'}" th:text="#{nuovaDiscussione}"></a> 
+        </span>
+      </div>
+      
+      <div id="palco">  
+			
+			<div id="avvolgiSingoloOggetto" th:if="${pagina.elementi.size()==0}" th:text="#{emptyDiscussione}">	
+			</div>
+			    	
+	      <div class="iterableCont" th:each="disc : ${pagina.elementi}">
+	          <div class="corpoIterabile">
+	            <a th:href="@{'/discussione/' + ${disc.id} + '/1'}">
+	            <div>
+	             <h4 th:text="${disc.nome}">Nome argomento<h4>
+	            </div>     
+	            <div th:text="#{replyInThread} + ${disc.risposte.size()}">
+	              num risposte
+	            </div>
+	            </a>
+	         </div>
+	         <div th:if="${utenteCorrente != null && utenteCorrente.isAdmin}">
+	            <a th:href="@{'/admin/argomento/'+ ${argomento.id} +'/eliminaDiscussione/' + ${disc.id}}">
+					<img class="iconcinaCestino" src="/images/cestino.png">
+				</a>    
+	         </div>
+	      </div>
+       </div>
+      
+      <div id="paginatore">
+        <span id="pagineMenu">
+        <span class="pagButton">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/1'}" th:text="#{primaPagina}"></a>
+        </span>
+        <span class="pagButton" th:if="${pagina.hasBefore}">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/' + ${pagina.pageNumber -1}}" th:text="${pagina.pageNumber -1}"></a>
+        </span>
+        <span id="paginaAttuale" th:text="${pagina.pageNumber}">p1</span>
+        <span class="pagButton" th:if="${pagina.hasAfter}">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/' + ${pagina.pageNumber +1}}" th:text="${pagina.pageNumber +1}"></a>
+        </span>
+        <span class="pagButton">
+        	<a th:href="@{'/argomento/' + ${argomento.id} + '/999999'}" th:text="#{ultimaPagina}"></a>
+        </span>
+        </span>
+        <span id="rispondiButton" th:if="${utenteCorrente!=null}"> 
+          <a th:href="@{'/argomento/' + ${argomento.id} + '/nuovaDiscussione'}" th:text="#{nuovaDiscussione}"></a> 
+        </span>
+      </div>
+      
+  </div>
+  
+	<div th:replace="fragments/base.html :: Footer"> </div>
+
+  </body>
+</html>

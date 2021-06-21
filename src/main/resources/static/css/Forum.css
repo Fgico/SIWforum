@@ -1,0 +1,222 @@
+
+.centerobj {
+  position: relative;
+  background-color: lightgrey;
+  border: solid 2px grey;
+ 
+}
+
+@media only screen and (min-width: 800px) {
+  .centerobj {
+    width: 70%;
+    left: 15%;
+  }
+}
+ 
+#forumIcon {
+  height: 5em;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+#bodycont{
+  border: solid 2px;
+  background-color: white;
+  min-height: 80vh;
+  display:flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+
+#palco{
+  flex-grow:1;
+}
+
+#usermenu{
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  display:flex;
+}
+#searchbar{
+  display: inline-block;
+  text-align: left;
+  padding-left:1em;
+  flex-grow:1;
+}
+#searchbox{
+	max-width: 250px;
+  width:60%;
+}
+
+.userButton{
+	text-align: right;
+   padding-right: 1em;
+}
+
+#titoloPagina{
+  padding-left: 0.7em;
+	padding-bottom:0.5em;
+}
+
+#titoloneDiscussione{
+	margin-bottom:0em;
+}
+
+#paginatore{
+  display:flex;
+  padding-left:1em;
+  padding-right:1em;
+  padding-bottom:0.3em;
+  padding-top:0.4em;
+}
+#pagineMenu{
+  flex-grow:1;
+  padding-right:2em;
+}
+.pagButton{
+  border: 1px solid black;
+  padding: 0.3em;
+  margin: 0.3em;
+}
+
+#paginaAttuale{
+  background-color:lightgrey;
+  padding:0.2em;
+  border: 1px solid grey;
+}
+
+#rispondiButton{
+   font-size: 1.15em;
+}
+
+.testoDestra{
+    text-align: right;
+    padding-right: 1em;
+}
+
+footer{
+    padding-top:2em;
+    min-height:10vh;
+    text-align: center
+}
+
+
+.iterableCont{
+  border: 2px solid black;
+  margin-left:5px;
+  margin-right: 5px;
+  margin-top: 1em;
+  margin-bottom:1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+
+a{
+  color:black;
+}
+
+.msgBox{
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+  margin-left:5px;
+  margin-right: 5px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.msgUser{
+  padding-left:1em;
+  padding-right:1em;
+  background-color: lightgrey;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+}
+.userMsgIcon{
+  height: 5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.msgCont{
+  flex-grow: 1;
+  padding-left: 1em;
+  display:flex;
+  flex-direction: column;
+}
+.quoteCont{
+  background-color:lightgrey;
+  margin-left:-0.5em;
+  padding-left:1em;
+}
+.quoteText{
+	padding-left:0.5em;
+}
+.msgBody{
+  flex-grow:1;
+  padding-top:1em;
+}
+#msgBtnCnt{
+  padding: 0.5em;
+  padding-top:1em;
+  font-size: 0.8em;
+  display:flex;
+}
+.msgDelete{
+	flex-grow:1;
+	color:red;
+}
+
+#userInfoPageCont{
+  padding: 1em;
+  display: flex;
+  flex-wrap:wrap;
+  align-items: stretch;
+}
+
+#userIconPageCont{
+  width: 15em;
+  padding-right: 2em;
+}
+#userIconPage{
+  width:100%
+}
+#userInfoPage{
+  flex-grow:1;
+  display: flex;
+  flex-direction: column;
+}
+#cambiaImmagineButton{
+}
+#banButtonBox{
+  text-align:right;
+  font-size:0.8em;
+}
+#banButton{
+  color:red;
+}
+
+.iterableCont{
+	display:flex;
+}
+
+.corpoIterabile{
+	flex-grow: 1;
+}
+
+.iconcinaCestino{
+	width: 2em;
+	padding: 1em;
+}
+
+#avvolgiSingoloOggetto{
+	padding:1em;
+}
+
+.elemPadTop{
+	padding-top:1em;
+}
+
+
+body{
+	font-family: Arial, Helvetica, sans-serif;
+    background-color:grey;
+}

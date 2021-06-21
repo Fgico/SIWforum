@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+  
+  <div th:replace="fragments/base.html :: Top"> </div>
+  
+    <div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{scegliArgomento}">Visualizza profilo:</h2> 
+      
+      <div id="palco">  
+			
+			<div id="avvolgiSingoloOggetto" th:if="${utenteCorrente != null && utenteCorrente.isAdmin}">
+				<a href="/admin/addArgomento" th:text="#{creaArgomento}">
+				</a>   
+			</div>
+			
+			<div id="avvolgiSingoloOggetto" th:if="${argomenti.size()==0}" th:text="#{zeroArgs}">
+				
+			</div>
+			    	
+	      <div class="iterableCont" th:each="arg : ${argomenti}">
+	          <div class="corpoIterabile">
+	            <a th:href="@{'/argomento/' + ${arg.id} +'/1'}">
+	            <div>
+	             <h4 th:text="${arg.nome}">Nome argomento<h4>
+	            </div>     
+	            <div th:text="#{threadInArg} + ${arg.threads.size()}">
+	              num risposte
+	            </div>
+	            </a>
+	         </div>
+	         <div th:if="${utenteCorrente != null && utenteCorrente.isAdmin}">
+	            <a th:href="@{'/admin/eliminaArgomento/' + ${arg.id}}">
+					<img class="iconcinaCestino" src="/images/cestino.png">
+				</a>    
+	         </div>
+	      </div>
+       </div>
+      
+  </div>
+  
+	<div th:replace="fragments/base.html :: Footer"> </div>
+
+  </body>
+</html>

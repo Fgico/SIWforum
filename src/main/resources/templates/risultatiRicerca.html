@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+  
+  <div th:replace="fragments/base.html :: Top"> </div>
+  
+    <div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{titoloCercaRes}">Risultati:</h2> 
+      
+      <div id="palco">   
+
+			<div id="avvolgiSingoloOggetto" th:if="${risultati.size()==0}" th:text="#{zeroSearchResult}">
+				
+			</div>
+			    	
+	      <div class="iterableCont" th:each="dsc : ${risultati}">
+	          <div class="corpoIterabile">
+	            <a th:href="@{'/discussione/' + ${dsc.id} +'/1'}">
+	            <div>
+	             <h4 th:text="${dsc.nome}">Nome argomento<h4>
+	            </div>     
+	            <div th:text="${dsc.argomento.nome} + ', ' +#{replyInThread} + ${dsc.risposte.size()}">
+	              num risposte
+	            </div>
+	            </a>
+	         </div>
+	         <div th:if="${utenteCorrente != null && utenteCorrente.isAdmin}">
+	            <a th:href="@{'/admin/argomento/'+ ${dsc.argomento.id} +'/eliminaDiscussione/' + ${dsc.id}}">
+					<img class="iconcinaCestino" src="/images/cestino.png">
+				</a>    
+	         </div>
+	      </div>
+       </div>
+      
+  </div>
+  
+	<div th:replace="fragments/base.html :: Footer"> </div>
+
+  </body>
+</html>

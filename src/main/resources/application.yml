@@ -1,0 +1,66 @@
+logging:
+  level:
+    it:
+      uniroma3:
+        siw:
+          spring: DEBUG
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: debug
+      springframework:
+        web: DEBUG
+server:
+  error:
+    include-stacktrace: always
+    whitelabel:
+      enabled: false 
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+    password: password
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://urlDB
+    username: user
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+  messages:
+    basename: messages/message
+  mvc:
+    format:
+      date: yyyy-MM-dd
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: id
+            client-secret: segreto
+  sql:
+    init:
+      platform: postgres
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html

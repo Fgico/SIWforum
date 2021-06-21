@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+	<div class="centerobj" id="bodycont"> 
+		<div id="avvolgiSingoloOggetto">
+	
+			<div>
+				<h1 th:text="#{insertImage}"> Carica immagine Utente:</h1>
+			</div>
+			<div>
+			<form th:action="@{'/user/addimage/'+${id}}" method="POST" enctype="multipart/form-data">
+				<input type="file" name="image" accept="image/png, image/jpeg" />
+				<button type="submit" th:text="#{invia}">Invia</button>
+			</form>
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

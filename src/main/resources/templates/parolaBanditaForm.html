@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{chiediParolaTitolo}" >Con quale nickname vuoi essere conosciuto?</h2> 
+
+	
+		<div id="avvolgiSingoloOggetto">
+		<form th:action="@{/admin/nuovaParolaBandita}" method="POST">
+	            <input type="text" maxlength="50" placeholder="parola bandita" required
+	                       th:field="${parolaBandita.parola}"/>
+	            <div th:if="${#fields.hasErrors('parolaBandita.parola')}"
+	                th:errors="${parolaBandita.parola}" th:style="'color:red'"></div>
+	
+	           <button type="submit" th:text="#{invia}">Invia</button>
+		</form>
+		</div>
+	
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

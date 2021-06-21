@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://vvv.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="headerfiles">
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/forum.css}" rel="stylesheet">
+	<title >SIW Forum</title>
+</head>
+<body>
+
+	<div class="centerobj" th:fragment="Top">
+		  <div class=="topTitle">
+		    <a href="/">
+		    <img id="forumIcon" src="/images/iconaForum.png">
+		      <b>SIW Roma3 Forum</b>
+		    </a>
+		     </div>
+		  
+		  <div id="usermenu">
+		  	
+		  	<form id="searchbar" th:action="@{/argomento/cerca}" method="POST">
+		  		<button type="submit" th:text="#{cerca}">Cerca</button>
+		  		<input id="searchbox" type="text" name="parolaCercata" maxlength="30" placeholder="Nome discussione"> 
+		  	</form>
+		  	
+		     <span class="userButton">
+		       <a th:if="${utenteCorrente} != null"
+         				th:href="@{'/' + 'myUser'}" 
+        				th:text ="#{mioProfilo}">
+        		  </a>
+		    </span>
+		    <span class="userButton">
+		      <a sec:authorize="isAnonymous()"
+         				th:href="@{'/' + 'login'}" 
+        				th:text ="login">
+        		  </a>
+			  <a sec:authorize="isAuthenticated()"
+         				th:href="@{'/' + 'logout'}" 
+         				th:text ="logout"> 
+         		  </a>
+		    </span>
+		  </div>
+	</div>
+	
+	<footer class="centerobj" th:text="#{footerInfo}" th:fragment="Footer">Progetto sviluppato per il corso Sistemi Informativi su web dell'universita' Roma 3 usando Spring Boot</footer>
+
+	
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{titoloNuovaDiscussione}" >Con quale nickname vuoi essere conosciuto?</h2> 
+
+	
+		<div id="avvolgiSingoloOggetto">
+		<form th:action="@{'/argomento/' +${argomento.id} +'/nuovaDiscussione'}" method="POST">
+	            <div th:text="#{chiediNomeDiscussione}"></div>
+	            <input type="text" maxlength="50" placeholder="nome Discussione" required
+	                       th:field="${discussione.nome}"/>
+	            <div th:if="${#fields.hasErrors('discussione.nome')}"
+	                th:errors="${discussione.nome}" th:style="'color:red'"></div>
+				
+				<div class="elemPadTop" th:text="#{chiediPrimoMessaggio}"></div>
+	            <div><textarea rows="8" cols="80" maxlength="250" placeholder="nome Discussione" required
+	                       th:field="${messaggio.testo}"></textarea></div>
+	            <div th:if="${#fields.hasErrors('messaggio.testo')}"
+	                th:errors="${messaggio.testo}" th:style="'color:red'"></div>
+				
+	           <div class="elemPadTop"><button type="submit" th:text="#{invia}">Invia</button></div>
+		</form>
+		</div>
+	
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

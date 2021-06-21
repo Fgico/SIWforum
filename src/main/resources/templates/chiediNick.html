@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{chiediNickTitolo}" >Con quale nickname vuoi essere conosciuto?</h2> 
+
+	
+		<div id="avvolgiSingoloOggetto">
+		<form th:action="@{/finalizzaRegistrazione}" method="POST">
+	            <div>Nickname:</div>
+	            <input type="text" maxlength="20" placeholder="nickname" required
+	                       th:field="${user.nickName}"/>
+	            <div th:if="${#fields.hasErrors('user.nickName')}"
+	                th:errors="${user.nickName}" th:style="'color:red'"></div>
+	
+	           <button type="submit" th:text="#{registrati}">Registra</button>
+		</form>
+		</div>
+	
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>

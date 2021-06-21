@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+  
+  <div th:replace="fragments/base.html :: Top"> </div>
+  
+    <div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{vedendoProfilo}">Visualizza profilo:</h2> 
+      
+      <div id="userInfoPageCont">
+      
+           <div id="userIconPageCont">
+              <img id="userIconPage" th:src="@{${user.imageUrl}}">
+            </div>
+          <div id="userInfoPage">
+              <h2 th:text="${user.nickName}">nome utente</h2>
+              <div id="cambiaImmagineButton">
+                <a th:if="${utenteCorrente!= null && utenteCorrente.id.equals(user.id) && !utenteCorrente.isBanned}"
+                	th:href="@{'/user/addimage/'+${user.id}}" th:text="#{aggiornaImmagine}"></a>
+                	<br>
+                <a	th:if="${utenteCorrente != null && utenteCorrente.isAdmin}"
+                	 th:href="@{'/admin/resetimage/'+${user.id}}" th:text="#{resettaImmagine}"></a>
+              </div>  
+              <div id="banButtonBox">
+                <a id="banButton" th:if="${utenteCorrente!= null && (utenteCorrente.id.equals(user.id) || utenteCorrente.isAdmin) && !utenteCorrente.isBanned}"
+                	th:href="@{'/user/ban/'+${user.id}}" th:text="#{selfBan}"></a>
+            </div>
+        </div>
+     </div>
+        
+        
+       	<div id="avvolgiSingoloOggetto" th:if="${utenteCorrente!= null && (utenteCorrente.id.equals(user.id) && utenteCorrente.isAdmin) && !utenteCorrente.isBanned}">
+        	<div>
+        	<h4 th:text="#{paroleBanditeTitolo}"></h4>
+        	<a href="/admin/nuovaParolaBandita" th:text="#{aggiungiParolaBandita}"></a>
+        	</div>
+        	
+        	<div class="iterableCont" th:each="parola : ${paroleBandite}">
+	          <div class="corpoIterabile">
+	            <div>
+	             <h4 th:text="${parola.parola}">Nome argomento<h4>
+	            </div>     
+	         </div>
+	         <div>
+	            <a th:href="@{'/admin/eliminaParolaBandita/' + ${parola.id}}">
+					<img class="iconcinaCestino" src="/images/cestino.png">
+				</a>    
+	         </div>
+	      </div>
+        	
+        </div>
+        
+      
+      
+  </div>
+  
+	<div th:replace="fragments/base.html :: Footer"> </div>
+
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles"> </head>
+<body>
+	
+	<div th:replace="fragments/base.html :: Top"> </div>
+
+	<div class="centerobj" id="bodycont">
+         
+      <h2 id="titoloPagina" th:text="#{titoloRisposta} + ${discussione.nome}" >Con quale nickname vuoi essere conosciuto?</h2> 
+		
+	  <div class="msgBox" th:if="${ msg.quotedMessage != null}">
+        <div class="msgUser"> 
+          <div th:text="${msg.quotedMessage.creatore.nickName}">
+            
+          </div>
+          <div>
+             <img class="userMsgIcon" th:src="@{${msg.quotedMessage.creatore.imageUrl}}">
+          </div>
+          <div th:text="${msg.quotedMessage.timePost.toString()}">
+            scritto il:
+          </div>
+        </div>
+        <div class="msgCont"> 
+          <div class="quoteCont" th:if="${msg.quotedMessage.quotedMessage != null}">
+            <div th:text="#{introduciCitazione} + ${msg.quotedMessage.quotedMessage.creatore.nickName}">
+            	
+            </div>
+            <div class="quoteText" th:text="${msg.quotedMessage.quotedMessage.testo}">
+            	
+            </div>
+          </div> 
+          <div class="msgBody" th:text="${msg.quotedMessage.testo}">
+            ciao come va? 
+          </div>
+        </div>
+      </div>
+	
+		<div id="avvolgiSingoloOggetto">
+		<form th:action="@{'/discussione/' +${discussione.id} +'/nuovaRisposta/'+${qid}}" method="POST" th:if="${qid!=null}">
+
+				<div class="elemPadTop" th:text="#{chiediTestoMessaggio}"></div>
+	            <div><textarea rows="8" cols="80" maxlength="250" placeholder="nome Discussione" required
+	                       th:field="${msg.testo}"></textarea></div>
+	            <div th:if="${#fields.hasErrors('msg.testo')}"
+	                th:errors="${msg.testo}" th:style="'color:red'"></div>
+				
+	           <div class="elemPadTop"><button type="submit" th:text="#{invia}">Invia</button></div>
+		</form>
+		
+		<form th:action="@{'/discussione/' +${discussione.id} +'/nuovaRisposta'}" method="POST" th:if="${qid==null}">
+
+				<div class="elemPadTop" th:text="#{chiediTestoMessaggio}"></div>
+	            <div><textarea rows="8" cols="80" maxlength="250" placeholder="nome Discussione" required
+	                       th:field="${msg.testo}"></textarea></div>
+	            <div th:if="${#fields.hasErrors('msg.testo')}"
+	                th:errors="${msg.testo}" th:style="'color:red'"></div>
+				
+	           <div class="elemPadTop"><button type="submit" th:text="#{invia}">Invia</button></div>
+		</form>
+		</div>
+	
+	
+	</div>
+	
+	<div th:replace="fragments/base.html :: Footer"> </div>
+	
+</body>
+</html>
